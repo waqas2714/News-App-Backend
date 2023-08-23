@@ -1,5 +1,5 @@
 const NewsAPI = require("newsapi");
-const newsapi = new NewsAPI("3523eb4587c445b58d3da8e4be22b069");
+const newsapi = new NewsAPI("5608824991a4401c8bf62bea06547e89");
 
 const getSources = async (req, res) => {
   try {
