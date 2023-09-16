@@ -1,7 +1,8 @@
 const express = require('express');
-const { signupUser, loginUser, saveNews, forgotPassword, resetPassword, unSaveNews, getUser, verifyToken, isSaved, getASavedNews, getLikedPosts } = require('../controllers/userController');
+const { signupUser, loginUser, saveNews, forgotPassword, resetPassword, unSaveNews, getUser, verifyToken, isSaved, getASavedNews, getLikedPosts, keepAlive } = require('../controllers/userController');
 const router = express.Router();
 
+router.get("/keep-alive", keepAlive);
 router.post("/signup", signupUser);
 router.post('/login', loginUser);
 router.get('/getUser/:_id', getUser);

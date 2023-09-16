@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendEmail = require("../utils/sendEmail");
-
+ 
 const encryptPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -17,7 +17,7 @@ const generateEmailToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: 60 * 30 });
 };
 
-const verifyToken = async (req, res)=>{
+const verifyToken = async (req, res)=>{ 
   try {
     const {token} = req.body;
     const isVerified = await jwt.verify(token, process.env.JWT_SECRET);
@@ -29,6 +29,10 @@ const verifyToken = async (req, res)=>{
   } catch (error) {
     res.json({error : error.message})
   }
+}
+
+const keepAlive = (req, res)=>{
+  res.send("I am alive.");
 }
 
 const signupUser = async (req, res) => {
@@ -250,6 +254,7 @@ const resetPassword = async (req, res) => {
 
 
 module.exports = {
+  keepAlive,
   signupUser,
   loginUser,
   saveNews,
